@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulario</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 40px; background-color: #f4f7f6; transition: background 0.3s; }
+        
+        .form-container { 
+            background: #ffffff; 
+            padding: 25px; 
+            border-radius: 10px; 
+            box-shadow: 0 4px 10px rgba(0,0,0,0.15); 
+            max-width: 480px; 
+            margin: auto; 
+            border-top: 6px solid #ffc107; /* Color inicial del turno */
+            transition: border-color 0.3s;
+        }
+
+        /* Clases de temas según el turno */
+        .tema-manana { border-top-color: #ffc107; } /* Amarillo cálido */
+        .tema-tarde { border-top-color: #fd7e14; }  /* Naranja */
+        .tema-noche { border-top-color: #343a40; }  /* Oscuro */
+
+        .form-group { margin-bottom: 18px; }
+        label { display: block; font-weight: bold; margin-bottom: 6px; }
+        
+        .radio-options {
+            display: flex;
+            gap: 15px;
+            background: #f8f9fa;
+            padding: 10px;
+            border-radius: 6px;
+        }
+
+        .radio-options label { font-weight: normal; cursor: pointer; margin: 0; }
+        
+        select, input[type="text"], textarea { 
+            width: 100%; 
+            padding: 9px; 
+            box-sizing: border-box; 
+            border: 1px solid #ccc; 
+            border-radius: 5px; 
+        }
+
+        .info-card {
+            background-color: #e9ecef;
+            padding: 10px 12px;
+            border-radius: 5px;
+            font-size: 0.9em;
+            color: #495057;
+            margin-top: 8px;
+        }
+
+        .error { color: red; font-size: 0.85em; display: none; margin-top: 4px; }
+        .counter { font-size: 0.85em; color: #666; text-align: right; display: block; }
+        
+        button { 
+            background-color: #28a745; 
+            color: white; 
+            border: none; 
+            padding: 12px; 
+            border-radius: 5px; 
+            cursor: pointer; 
+            width: 100%; 
+            font-size: 16px; 
+            font-weight: bold;
+        }
+        
+        button:disabled { background-color: #cccccc; cursor: not-allowed; }
+        
+        .success-box { 
+            display: none; 
+            background-color: #d4edda; 
+            color: #155724; 
+            padding: 15px; 
+            border-radius: 5px; 
+            margin-top: 20px; 
+        }
+    </style>
+</head>
+<body>
+
+    <div class="form-container" id="tarjetaForm">
+        <h2>Matrícula de Curso</h2>
+        <form id="formRegistro">
+            
+            <div class="form-group">
+                <label for="txtTelefono">Número de Teléfono:</label>
+                <input type="text" id="txtTelefono" placeholder="Ej: 987654321" autocomplete="off">
+                <span id="errorTelefono" class="error">¡Solo se permiten números!</span>
+            </div>
+
+            <div class="form-group">
+                <label>Selecciona tu Turno de Estudio:</label>
+                <div class="radio-options">
+                    <label><input type="radio" name="turno" value="manana" checked> Mañana</label>
+                    <label><input type="radio" name="turno" value="tarde"> Tarde</label>
+                    <label><input type="radio" name="turno" value="noche"> Noche</label>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="selectHorario">Horario Disponible:</label>
+                <select id="selectHorario">
+                    </select>
+                <div class="info-card" id="msgInfoTurno">
+                    </div>
+            </div>
+
+            <div class="form-group">
+                <label for="txtBio">Motivo de inscripción (Máx. 60 caracteres):</label>
+                <textarea id="txtBio" maxlength="60" rows="2" placeholder="¿Por qué deseas llevar este curso?"></textarea>
+                <span class="counter">Caracteres restantes: <span id="numContador">60</span></span>
+            </div>
+
+            <div class="form-group">
+                <label style="font-weight: normal;">
+                    <input type="checkbox" id="chkAceptar"> Acepto los Términos y Condiciones.
+                </label>
+            </div>
+
+            <button type="submit" id="btnEnviar" disabled>Confirmar Matrícula</button>
+        </form>
+
+        <div id="boxExito" class="success-box"></div>
+    </div>
+
+    <script src="js/index.js"></script>
+</body>
+</html>
